@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Portfolio from "./pages/Portfolio";
-import Web3D from "./pages/Web3D";
+import Portfolio from "./pages/portforlio/Portfolio";
+import Web3D from "./pages/web3d/Web3D";
 
 export default function App(){
   return (
