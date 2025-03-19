@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-
+import sun from "../assets/sun-fill.svg"
+import moon from "../assets/moon-fill.svg"
 const Themetoggle: React.FC = () => {
   const [theme, setTheme] = useState<'light' | 'dark' | 'system'>('system');
 
@@ -45,7 +46,9 @@ const Themetoggle: React.FC = () => {
   }, [theme]);
 
   // Hàm để xử lý khi người dùng chọn theme
-  const handleThemeChange = (newTheme: 'light' | 'dark' | 'system') => {
+  const handleToggleTheme = () => {
+    const currentTheme = localStorage.getItem('theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark'; // Toggle between 'light' and 'dark'
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
     updateTheme(newTheme);
@@ -53,21 +56,17 @@ const Themetoggle: React.FC = () => {
 
   return (
     <div className="bg-neutral-400 dark:bg-neutral-800">
-        <div className="space-x-4">
-          <button
-            onClick={() => handleThemeChange('light')}
-            className="px-4 py-2 bg-blue-500 text-white rounded-md"
-          >
-            Light Mode
-          </button>
-          <button
-            onClick={() => handleThemeChange('dark')}
-            className="px-4 py-2 bg-blue-500 text-white rounded-md"
-          >
-            Dark Mode
-          </button>
-        </div>
-      </div>
+      <button
+        onClick={() => handleToggleTheme()}
+        className=" px-[5px] py-[5px] cursor-pointer rounded-md bg-neutral-500 dark:bg-neutral-900"
+      >
+        <img
+          className="h-[30px] w-[30px]  "
+          src={localStorage.getItem('theme') === 'dark' ? sun : moon}
+          alt="Toggle Icons"
+        />
+      </button>
+    </div>
   );
 };
 
